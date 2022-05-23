@@ -1,7 +1,7 @@
 
 server: 
-  port: 18081
+ port: 18081
   
 student: 
-  age: 26
-  name: fujialin
+ age: 26
+ name: fujialin 
