@@ -26,5 +26,12 @@ public class Test {
         // 获取父类类型
         Class<?> superclass = sutclass.getSuperclass();
         System.out.println(superclass );
+
+        // 获取系统类加载器
+        ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+        // 扩展类加载器
+        ClassLoader parent = systemClassLoader.getParent();
+        // 根加载器（c/c++）
+        ClassLoader parent1 = parent.getParent();
     }
 }

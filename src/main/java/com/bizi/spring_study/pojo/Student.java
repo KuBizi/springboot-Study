@@ -1,6 +1,5 @@
 package com.bizi.spring_study.pojo;
 
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
