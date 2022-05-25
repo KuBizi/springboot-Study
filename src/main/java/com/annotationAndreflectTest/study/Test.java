@@ -1,9 +1,13 @@
 package com.annotationAndreflectTest.study;
 
-@MyAnnotation(name = "MyAnnotation",age = 24,sex = {SEX.MEN,SEX.WOMEN})
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+
 public class Test {
 
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException {
         Class<?> aClass = Class.forName("com.annotationAndreflectTest.study.ReflectStudentTest");
         Class<?> aClass1 = Class.forName("com.annotationAndreflectTest.study.ReflectStudentTest");
         Class<?> aClass2 = Class.forName("com.annotationAndreflectTest.study.ReflectStudentTest");
@@ -22,6 +26,21 @@ public class Test {
         Class<ReflectStudentTest> sutclass3 = ReflectStudentTest.class;
 
         System.out.println(sutclass2.hashCode()==sutclass3.hashCode());
+
+        // 通过反射获取class对象  class获取实例对象
+        ReflectStudentTest reflectStudentTest = (ReflectStudentTest) sutclass2.newInstance();
+        
+        // 获取字段属性
+        Field name = sutclass2.getDeclaredField("name");
+        // 设置是否允许访问
+        name.setAccessible(true);
+        name.set(reflectStudentTest,"fjl");
+        System.out.println(reflectStudentTest.getName());
+
+        // 返回一个方法   方法名，方法参数类型（避免方法重载不知道是哪个方法）
+        Method setName = sutclass2.getDeclaredMethod("getName", String.class);
+        setName.invoke(reflectStudentTest,"fjl");
+        System.out.println(reflectStudentTest.getName());
         
         // 获取父类类型
         Class<?> superclass = sutclass.getSuperclass();
@@ -33,5 +52,21 @@ public class Test {
         ClassLoader parent = systemClassLoader.getParent();
         // 根加载器（c/c++）
         ClassLoader parent1 = parent.getParent();
+        
+    }
+
+    public static void annotationTest() throws NoSuchFieldException {
+        ReflectPersonTest p = new ReflectPersonTest();
+        Class<? extends ReflectPersonTest> pClass = p.getClass();
+        MyAnnotation annotation = pClass.getAnnotation(MyAnnotation.class);
+        SEX sex = annotation.sex();
+        int age = annotation.age();
+        String name = annotation.name();
+
+        Field field = pClass.getField("name");
+        FildAnnotation fieldAnnotation = field.getAnnotation(FildAnnotation.class);
+        int len = fieldAnnotation.len();
+        String type = fieldAnnotation.type();
+        String name1 = fieldAnnotation.name();
     }
 }

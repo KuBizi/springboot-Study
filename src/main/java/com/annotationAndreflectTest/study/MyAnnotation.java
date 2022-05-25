@@ -16,7 +16,7 @@ public @interface MyAnnotation {
     // 注解参数 ： 参数类型+参数名（）
     String name();
     int age();
-    SEX[] sex();
+    SEX sex();
 }
 
 @AllArgsConstructor
