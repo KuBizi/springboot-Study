@@ -5,3 +5,74 @@ server:
 student: 
  age: 26
  name: fujialin 
+ 
+# @Configuration
+# @ConfigurationProperties(prefix = "server")
+# @Data
+# public class MapServerProperties {
+# private Map<String, String> application;
+# private Map<String, List<String>> config;
+# private Map<String, Credential> users;
+#}
+#server:
+# application:
+#  name: InjectMapFromYAML
+#  url: http://injectmapfromyaml.dev
+#  description: How To Inject a map from a YAML File in Spring Boot
+# config:
+#  ips:
+#    - 10.10.10.10
+#    - 10.10.10.11
+#    - 10.10.10.12
+#    - 10.10.10.13
+#  filesystem:
+#    - /dev/root
+#    - /dev/md2
+#    - /dev/md4
+# users:
+#  root:
+#   username: root
+#   password: rootpass
+#  guest:
+#   username: guest
+#   password: guestpass
+   
+departmentdao: 
+ departmentmap:
+  1001: 
+   id: 1001
+   departName: "教学部"
+  1002:
+   id: 1002
+   departName: "市场部"
+  1003:
+   id: 1003
+   departName: "教研部"
+   
+employeedao:
+ employeeMap:
+  101:
+   id: 101
+   lastName: "张三"
+   email: "101@qq.com"
+   department: # ${departmentdao.departmentmap.1001 }  //todo 为什么这种模式不行
+    id: 1001
+    departName: "教学部"
+   birth: "2019-02-01" #实体类需要加注解
+  102:
+   id: 102
+   lastName: "李四"
+   email: "102@qq.com"
+   department: 
+    id: 1002
+    departName: "市场部"
+   birth: "2019-03-02"
+  103:
+   id: 103
+   lastName: "王五"
+   email: "103@qq.com"
+   department: 
+    id: 1003
+    departName: "教研部"
+   birth: "2019-04-03"
+   

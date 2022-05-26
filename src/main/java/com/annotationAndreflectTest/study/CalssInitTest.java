@@ -1,12 +1,15 @@
 package com.annotationAndreflectTest.study;
 
 
+import java.util.Date;
+
 // https://blog.csdn.net/Aur_ora/article/details/118437301
 public class CalssInitTest {
 
     public static void main(String[] args) {
         C a = new C();
         System.out.println(a.m);
+        System.out.println(new Date());
     }
 }
 
