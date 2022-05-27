@@ -1,6 +1,10 @@
 
 server: 
  port: 18081
+
+spring:
+ thymeleaf:
+  cache: false
   
 student: 
  age: 26
@@ -75,4 +79,4 @@ employeedao:
     id: 1003
     departName: "教研部"
    birth: "2019-04-03"
-   
+

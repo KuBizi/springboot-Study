@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 @Getter
@@ -18,12 +19,31 @@ import java.util.Map;
 public class EmployeeDao {
     
     private Map<Integer, Employee> employeeMap;
-
-    public Collection<Employee> Departments() {
+    
+    @Autowired
+    private DepartmentDao departmentDao;
+    
+    // 
+    private static AtomicInteger initId =  new AtomicInteger(103);
+    private Integer getInitId() {
+        return initId.getAndIncrement();
+    }
+    public Collection<Employee> getEmployees() {
         return employeeMap.values();
     }
 
-    public Employee getDepartmentByIds(Integer id) {
+    public Employee getEmployeeByIds(Integer id) {
         return employeeMap.get(id);
+    }
+    
+    public void save (Employee employee) {
+        if (employee == null) {
+            return;
+        }
+        if (employee.getId() == null) {
+            employee.setId(getInitId());
+        }
+        employee.setDepartment(departmentDao.getDepartmentByIds(employee.getDepartment().getId()));
+        employeeMap.put(employee.getId(),employee);
     }
 }
