@@ -6,7 +6,7 @@ spring:
  thymeleaf:
   cache: false
  messages:
-  basename: i18n.login
+  basename: i18n.login  #  ResourceBundleCondition.getMatchOutcome 方法
   
 student: 
  age: 26
