@@ -7,7 +7,11 @@ spring:
   cache: false
  messages:
   basename: i18n.login  #  ResourceBundleCondition.getMatchOutcome 方法
-  
+ datasource:
+  driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  url: jdbc:sqlserver://localhost:1433;DatabaseName=erp22_localdev
+  username: sa
+  password: 95938
 student: 
  age: 26
  name: fujialin 

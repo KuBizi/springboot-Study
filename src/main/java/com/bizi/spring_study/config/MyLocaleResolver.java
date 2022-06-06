@@ -1,17 +1,20 @@
 package com.bizi.spring_study.config;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
+//@Component
 public class MyLocaleResolver implements LocaleResolver {
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
         // 获取请求域中的语言参数信息
-        String lanuage = request.getParameter("");
+        String lanuage = request.getParameter("lanuage");
         
         // 获取默认语言参数
         Locale aDefault = Locale.getDefault();
@@ -27,6 +30,5 @@ public class MyLocaleResolver implements LocaleResolver {
 
     @Override
     public void setLocale(HttpServletRequest request, HttpServletResponse response, Locale locale) {
-
     }
 }
