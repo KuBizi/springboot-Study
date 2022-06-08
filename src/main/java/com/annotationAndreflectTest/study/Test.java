@@ -29,9 +29,11 @@ public class Test {
 
         // 通过反射获取class对象  class获取实例对象
         ReflectStudentTest reflectStudentTest = (ReflectStudentTest) sutclass2.newInstance();
-        
+        Field name;
         // 获取字段属性
-        Field name = sutclass2.getDeclaredField("name");
+        name = sutclass2.getSuperclass().getDeclaredField("name");
+        // name = sutclass2.getField("name"); // 可以获取父类public 属性，
+        // name = sutclass2.getDeclaredField("name"); // 私有属性不会被子类继承所以 getDeclaredField无法访问
         // 设置是否允许访问
         name.setAccessible(true);
         name.set(reflectStudentTest,"fjl");

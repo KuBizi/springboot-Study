@@ -11,7 +11,7 @@ import lombok.*;
 @MyAnnotation(name = "fjl",age = 24,sex = SEX.WOMEN)
 public class ReflectPersonTest {
     @FildAnnotation(name="name",len = 16,type = "string")
-    private String name;
+    public String name;
     @FildAnnotation(name="age",len = 3,type = "int")
     private int age;
     @FildAnnotation(name="id",len = 5,type = "int")
